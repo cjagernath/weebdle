@@ -7,13 +7,13 @@ export default function Home() {
   const [theme, setTheme] = useState("night");
 
   const handleClick = () => {
-    theme === "pastel" ? setTheme("night") : setTheme("pastel");
+    theme === "cupcake" ? setTheme("night") : setTheme("cupcake");
   };
 
   return (
     <div data-theme={theme}>
       <button className="btn btn-accent btn-sm" onClick={handleClick}>
-        {theme === "pastel" ? <div>🌙</div> : <div>🌞</div>}
+        {theme === "cupcake" ? <div>🌙</div> : <div>🌞</div>}
       </button>
       <Game />
     </div>

@@ -1,45 +1,26 @@
 import React from "react";
 import { useState } from "react";
+import { NewGuess } from "./NewGuess";
 
 interface GuessesProps {
   guessNum: number;
   winnerName: string;
+  onSubmitGuess: (guessedCorrect: boolean) => void;
 }
 
-export const Guesses: React.FC<GuessesProps> = ({ guessNum, winnerName }) => {
-  const [input, setInput] = useState("");
-  const [disableGuess, setDisableGuess] = useState(false);
-
-  function handleSubmit() {
-    guessNum + 1;
-    if (input === winnerName) {
-      //they win
-      return;
-    }
-    setDisableGuess(true);
-  }
+export const Guesses: React.FC<GuessesProps> = ({
+  guessNum,
+  winnerName,
+  onSubmitGuess,
+}) => {
+  const handleGuessSubmit = (guessedCorrect: boolean) => {
+    //if guess is wrong render another guess element
+    onSubmitGuess(guessedCorrect);
+  };
 
   return (
     <div>
-      <input
-        type="text"
-        className="input input-primary w-full max-w-xs"
-        placeholder="Search for an anime and make a guess!"
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-        disabled={disableGuess}
-      ></input>
-      {disableGuess ? (
-        "X"
-      ) : (
-        <button
-          className="btn btn-accent btn-sm"
-          onClick={handleSubmit}
-          disabled={input == ""}
-        >
-          Submit
-        </button>
-      )}
+      <NewGuess winnerName={winnerName} onSubmit={handleGuessSubmit} />
       {guessNum != 5 ? (
         <p>You have {6 - guessNum} guesses left</p>
       ) : (
