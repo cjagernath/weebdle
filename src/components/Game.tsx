@@ -10,6 +10,7 @@ export const Game = () => {
   const [winnerName, setWinnerName] = useState("");
   const [isCorrect, setIsCorrect] = useState<boolean>(false);
   const [guesses, setGuesses] = useState<number[]>([1]);
+  const [animeNamesList, setAnimeNamesList] = useState<string[]>([]);
 
   const handleGuess = (guessedCorrect: boolean) => {
     setIsCorrect(guessedCorrect);
@@ -25,6 +26,7 @@ export const Game = () => {
   useEffect(() => {
     const animeNames: string[] = [];
     Animes.map((anime) => animeNames.push(anime.name));
+    setAnimeNamesList(animeNames);
     //rng to get winner
     const random = Math.floor(Math.random() * (animeNames.length - 1));
     setWinner(random);
@@ -47,6 +49,7 @@ export const Game = () => {
         winnerName={winnerName}
         onSubmitGuess={handleGuess}
         guesses={guesses}
+        animeNamesList={animeNamesList}
       />
     </center>
   );

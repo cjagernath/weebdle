@@ -7,6 +7,7 @@ interface GuessesProps {
   winnerName: string;
   onSubmitGuess: (guessedCorrect: boolean) => void;
   guesses: Array<number>;
+  animeNamesList: Array<string>;
 }
 
 export const Guesses: React.FC<GuessesProps> = ({
@@ -14,6 +15,7 @@ export const Guesses: React.FC<GuessesProps> = ({
   winnerName,
   onSubmitGuess,
   guesses,
+  animeNamesList,
 }) => {
   const [guessResult, setGuessResult] = useState<boolean>();
 
@@ -26,13 +28,19 @@ export const Guesses: React.FC<GuessesProps> = ({
     <div>
       {guessResult ? (
         <div>
-          You got it<button>Share {guessNum}</button>
+          <p>You got it</p>
+          <p>{guessNum}</p>
+          <button className="btn btn-accent btn-sm">Share</button>
         </div>
       ) : (
         <div>
           {guesses.map((i) => (
             <div>
-              <NewGuess winnerName={winnerName} onSubmit={handleGuessSubmit} />
+              <NewGuess
+                winnerName={winnerName}
+                onSubmit={handleGuessSubmit}
+                animeNamesList={animeNamesList}
+              />
             </div>
           ))}
 
