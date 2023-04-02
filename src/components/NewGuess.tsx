@@ -20,7 +20,7 @@ export const NewGuess: React.FC<NewGuessProps> = ({ winnerName, onSubmit }) => {
     <div>
       <input
         type="text"
-        className="input input-primary w-full max-w-xs"
+        className="input w-full max-w-xs"
         placeholder="Search for an anime and make a guess!"
         value={input}
         onChange={(e) => setInput(e.target.value)}

@@ -37,9 +37,11 @@ export const Guesses: React.FC<GuessesProps> = ({
           ))}
 
           {guessNum !== 6 ? (
-            <p>You have {7 - guessNum} guesses left</p>
+            <p>
+              You have {7 - guessNum} guesses left {winnerName}
+            </p>
           ) : (
-            <p>You have 1 guess left{winnerName}</p>
+            <p>You have 1 guess left</p>
           )}
         </div>
       )}
