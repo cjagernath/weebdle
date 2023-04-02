@@ -8,6 +8,7 @@ interface GuessesProps {
   onSubmitGuess: (guessedCorrect: boolean) => void;
   guesses: Array<number>;
   animeNamesList: Array<string>;
+  maxGuesses: Array<number>;
 }
 
 export const Guesses: React.FC<GuessesProps> = ({
@@ -16,6 +17,7 @@ export const Guesses: React.FC<GuessesProps> = ({
   onSubmitGuess,
   guesses,
   animeNamesList,
+  maxGuesses,
 }) => {
   const [guessResult, setGuessResult] = useState<boolean>();
 
@@ -29,28 +31,50 @@ export const Guesses: React.FC<GuessesProps> = ({
       {guessResult ? (
         <div>
           <h1 className="text-2xl font-bold">You got it!</h1>
-          <p>{guessNum}</p>
+          {maxGuesses.map((i) =>
+            i < guessNum ? (
+              <button className="btn btn-error btn-xs"></button>
+            ) : i === guessNum ? (
+              <button className="btn btn-success btn-xs"></button>
+            ) : (
+              <button className="btn btn-xs"></button>
+            )
+          )}
           <h1 className="text-2xl font-bold">{winnerName}</h1>
           <button className="btn btn-accent btn-sm">Share</button>
         </div>
       ) : (
         <div>
-          {guesses.map((i) => (
+          {guessNum < 7 ? (
             <div>
-              <NewGuess
-                winnerName={winnerName}
-                onSubmit={handleGuessSubmit}
-                animeNamesList={animeNamesList}
-              />
-            </div>
-          ))}
+              {guesses.map(() => (
+                <div>
+                  <NewGuess
+                    winnerName={winnerName}
+                    onSubmit={handleGuessSubmit}
+                    animeNamesList={animeNamesList}
+                  />
+                </div>
+              ))}
 
-          {guessNum !== 6 ? (
-            <p>
-              You have {7 - guessNum} guesses left {winnerName}
-            </p>
+              {guessNum !== 6 ? (
+                <p>
+                  You have {7 - guessNum} guesses left {winnerName}
+                </p>
+              ) : (
+                <p>You have 1 guess left</p>
+              )}
+            </div>
           ) : (
-            <p>You have 1 guess left</p>
+            <div>
+              <h1 className="text-2xl font-bold">The answer was:</h1>
+              <h1 className="text-2xl font-bold">{winnerName}</h1>
+              {maxGuesses.map(() => (
+                <button className="btn btn-error btn-xs"></button>
+              ))}
+              <br />
+              <button className="btn btn-accent btn-sm">Share</button>
+            </div>
           )}
         </div>
       )}

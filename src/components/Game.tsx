@@ -11,6 +11,7 @@ export const Game = () => {
   const [winnerName, setWinnerName] = useState("");
   const [isCorrect, setIsCorrect] = useState<boolean>(false);
   const [guesses, setGuesses] = useState<number[]>([1]);
+  const maxGuesses = [1, 2, 3, 4, 5, 6];
   const [animeNamesList, setAnimeNamesList] = useState<string[]>([]);
 
   const handleGuess = (guessedCorrect: boolean) => {
@@ -43,6 +44,7 @@ export const Game = () => {
         winner={winner}
         guessedCorrect={isCorrect}
         guesses={guesses}
+        maxGuesses={maxGuesses}
       />
       <br />
       <Guesses
@@ -51,6 +53,7 @@ export const Game = () => {
         onSubmitGuess={handleGuess}
         guesses={guesses}
         animeNamesList={animeNamesList}
+        maxGuesses={maxGuesses}
       />
       <Footer />
     </center>

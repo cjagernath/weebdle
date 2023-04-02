@@ -6,6 +6,7 @@ interface PictureProps {
   winner: number;
   guessedCorrect: boolean;
   guesses: Array<number>;
+  maxGuesses: Array<number>;
 }
 
 export const Picture: React.FC<PictureProps> = ({
@@ -36,8 +37,9 @@ export const Picture: React.FC<PictureProps> = ({
   return (
     <div>
       <img src={displayImage} width={400} />
-      {guesses.map((i) => (
+      {guesses.map((i, index) => (
         <button
+          key={index}
           className="btn btn-accent btn-sm"
           onClick={() => changeDisplay(i)}
         >
