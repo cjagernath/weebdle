@@ -1,6 +1,7 @@
 import { Header } from "./Header";
 import { Picture } from "./Picture";
 import { Guesses } from "./Guesses";
+import { Footer } from "./Footer";
 import { Animes } from "@/Animes";
 import { useState, useEffect } from "react";
 
@@ -51,6 +52,7 @@ export const Game = () => {
         guesses={guesses}
         animeNamesList={animeNamesList}
       />
+      <Footer />
     </center>
   );
 };

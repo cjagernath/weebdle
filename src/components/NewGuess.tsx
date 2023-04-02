@@ -29,7 +29,7 @@ export const NewGuess: React.FC<NewGuessProps> = ({
       <input
         type="text"
         className="input w-full max-w-xs"
-        placeholder="Search for an anime and make a guess!"
+        placeholder="Search for an anime and guess!"
         value={input}
         list="animeList"
         onChange={(e) => setInput(e.target.value)}
