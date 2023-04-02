@@ -5,14 +5,21 @@ import { Animes } from "@/Animes";
 import { useState, useEffect } from "react";
 
 export const Game = () => {
-  const [guessNum, setGuessNum] = useState(0);
+  const [guessNum, setGuessNum] = useState(1);
   const [winner, setWinner] = useState(0);
   const [winnerName, setWinnerName] = useState("");
-  const [isCorrect, setIsCorrect] = useState<boolean>();
+  const [isCorrect, setIsCorrect] = useState<boolean>(false);
+  const [guesses, setGuesses] = useState<number[]>([1]);
 
   const handleGuess = (guessedCorrect: boolean) => {
     setIsCorrect(guessedCorrect);
-    setGuessNum(guessNum + 1);
+
+    if (!guessedCorrect && guessNum < 6) {
+      setGuessNum(guessNum + 1);
+      setGuesses([...guesses, guessNum + 1]);
+    } else if (!guessedCorrect && guessNum === 6) {
+      setGuessNum(guessNum + 1);
+    }
   };
 
   useEffect(() => {
@@ -27,12 +34,18 @@ export const Game = () => {
     <center>
       <Header />
       <br />
-      <Picture guessNum={guessNum} winner={winner} />
+      <Picture
+        guessNum={guessNum}
+        winner={winner}
+        guessedCorrect={isCorrect}
+        guesses={guesses}
+      />
       <br />
       <Guesses
         guessNum={guessNum}
         winnerName={winnerName}
         onSubmitGuess={handleGuess}
+        guesses={guesses}
       />
     </center>
   );

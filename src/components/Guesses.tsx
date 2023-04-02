@@ -6,24 +6,20 @@ interface GuessesProps {
   guessNum: number;
   winnerName: string;
   onSubmitGuess: (guessedCorrect: boolean) => void;
+  guesses: Array<number>;
 }
 
 export const Guesses: React.FC<GuessesProps> = ({
   guessNum,
   winnerName,
   onSubmitGuess,
+  guesses,
 }) => {
   const [guessResult, setGuessResult] = useState<boolean>();
-  const [guesses, setGuesses] = useState<string[]>([""]);
 
   const handleGuessSubmit = (guessedCorrect: boolean) => {
-    //if guess is wrong render another guess element
     onSubmitGuess(guessedCorrect);
     setGuessResult(guessedCorrect);
-
-    if (!guessedCorrect && guesses.length < 6) {
-      setGuesses([...guesses, "guess"]);
-    }
   };
 
   return (
@@ -40,8 +36,8 @@ export const Guesses: React.FC<GuessesProps> = ({
             </div>
           ))}
 
-          {guessNum != 5 ? (
-            <p>You have {6 - guessNum} guesses left</p>
+          {guessNum !== 6 ? (
+            <p>You have {7 - guessNum} guesses left</p>
           ) : (
             <p>You have 1 guess left{winnerName}</p>
           )}
