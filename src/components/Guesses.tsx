@@ -28,8 +28,9 @@ export const Guesses: React.FC<GuessesProps> = ({
     <div>
       {guessResult ? (
         <div>
-          <p>You got it</p>
+          <h1 className="text-2xl font-bold">You got it!</h1>
           <p>{guessNum}</p>
+          <h1 className="text-2xl font-bold">{winnerName}</h1>
           <button className="btn btn-accent btn-sm">Share</button>
         </div>
       ) : (
