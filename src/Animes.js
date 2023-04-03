@@ -28,7 +28,7 @@ export const Animes = [
   },
   {
     name: "Death Note",
-    img1: "https://ancdn.fancaps.net/1668854.jpg",
+    img1: "https://ancdn.fancaps.net/1673626.jpg",
     img2: "https://ancdn.fancaps.net/1671522.jpg",
     img3: "https://ancdn.fancaps.net/1657137.jpg",
     img4: "https://ancdn.fancaps.net/1672938.jpg",

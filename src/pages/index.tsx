@@ -12,7 +12,7 @@ export default function Home() {
 
   return (
     <div data-theme={theme}>
-      <label className="swap swap-rotate">
+      <label className=" swap swap-rotate">
         <input type="checkbox" onClick={handleClick} />
 
         <svg
