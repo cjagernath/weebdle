@@ -14,6 +14,7 @@ export const Picture: React.FC<PictureProps> = ({
   winner,
   guessedCorrect,
   guesses,
+  maxGuesses,
 }) => {
   const img1 = Animes[winner].img1;
   const img2 = Animes[winner].img2;
@@ -37,15 +38,31 @@ export const Picture: React.FC<PictureProps> = ({
   return (
     <div>
       <img src={displayImage} width={400} />
-      {guesses.map((i, index) => (
-        <button
-          key={index}
-          className="btn btn-accent btn-sm"
-          onClick={() => changeDisplay(i)}
-        >
-          {i}
-        </button>
-      ))}
+      {guessedCorrect ? (
+        <div>
+          {maxGuesses.map((i, index) => (
+            <button
+              key={index}
+              className="btn btn-accent btn-sm"
+              onClick={() => changeDisplay(i)}
+            >
+              {i}
+            </button>
+          ))}
+        </div>
+      ) : (
+        <div>
+          {guesses.map((i, index) => (
+            <button
+              key={index}
+              className="btn btn-accent btn-sm"
+              onClick={() => changeDisplay(i)}
+            >
+              {i}
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
