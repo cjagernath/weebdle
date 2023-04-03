@@ -29,7 +29,6 @@ export const Game = () => {
     const animeNames: string[] = [];
     Animes.map((anime) => animeNames.push(anime.name));
     setAnimeNamesList(animeNames);
-    //rng to get winner
     const random = Math.floor(Math.random() * (animeNames.length - 1));
     setWinner(random);
     setWinnerName(animeNames[random]);

@@ -31,6 +31,8 @@ export const Guesses: React.FC<GuessesProps> = ({
       {guessResult ? (
         <div>
           <h1 className="text-2xl font-bold">You got it!</h1>
+          <h1 className="text-4xl font-bold">{winnerName}</h1>
+          <br />
           {maxGuesses.map((i) =>
             i < guessNum ? (
               <button className="btn btn-error btn-xs"></button>
@@ -40,7 +42,8 @@ export const Guesses: React.FC<GuessesProps> = ({
               <button className="btn btn-xs"></button>
             )
           )}
-          <h1 className="text-2xl font-bold">{winnerName}</h1>
+          <div />
+          <br />
           <button className="btn btn-accent btn-sm">Share</button>
         </div>
       ) : (
@@ -68,10 +71,12 @@ export const Guesses: React.FC<GuessesProps> = ({
           ) : (
             <div>
               <h1 className="text-2xl font-bold">The answer was:</h1>
-              <h1 className="text-2xl font-bold">{winnerName}</h1>
+              <h1 className="text-4xl font-bold">{winnerName}</h1>
+              <br />
               {maxGuesses.map(() => (
                 <button className="btn btn-error btn-xs"></button>
               ))}
+              <div />
               <br />
               <button className="btn btn-accent btn-sm">Share</button>
             </div>
