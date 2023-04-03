@@ -27,15 +27,6 @@ export const Animes = [
     img6: "https://ancdn.fancaps.net/18464293.jpg",
   },
   {
-    name: "Naruto Shippuden",
-    img1: "https://ancdn.fancaps.net/1668854.jpg",
-    img2: "https://ancdn.fancaps.net/1671522.jpg",
-    img3: "https://ancdn.fancaps.net/1669329.jpg",
-    img4: "https://ancdn.fancaps.net/1672938.jpg",
-    img5: "https://ancdn.fancaps.net/1657137.jpg",
-    img6: "https://ancdn.fancaps.net/1666299.jpg",
-  },
-  {
     name: "Death Note",
     img1: "https://ancdn.fancaps.net/1668854.jpg",
     img2: "https://ancdn.fancaps.net/1671522.jpg",

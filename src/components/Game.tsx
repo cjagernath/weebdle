@@ -13,6 +13,7 @@ export const Game = () => {
   const [guesses, setGuesses] = useState<number[]>([1]);
   const maxGuesses = [1, 2, 3, 4, 5, 6];
   const [animeNamesList, setAnimeNamesList] = useState<string[]>([]);
+  const [dailyCount, setDailyCount] = useState(0);
 
   const handleGuess = (guessedCorrect: boolean) => {
     setIsCorrect(guessedCorrect);
@@ -27,21 +28,28 @@ export const Game = () => {
 
   useEffect(() => {
     const lastPlayedDate = localStorage.getItem("lastPlayedDate");
-    const currentDate = new Date().toISOString().slice(0, 10);
+    const today = new Date().toISOString().slice(0, 10);
+    console.log(lastPlayedDate);
+    console.log(today);
+    const animeNames: string[] = [];
+    Animes.map((anime) => animeNames.push(anime.name));
+    setAnimeNamesList(animeNames);
+    const random = Math.floor(Math.random() * animeNames.length);
+    setWinner(random);
+    setWinnerName(animeNames[random]);
 
-    if (lastPlayedDate !== currentDate) {
-      const animeNames: string[] = [];
-      Animes.map((anime) => animeNames.push(anime.name));
-      setAnimeNamesList(animeNames);
-      const random = Math.floor(Math.random() * (animeNames.length - 1));
-      setWinner(random);
-      setWinnerName(animeNames[random]);
+    if (lastPlayedDate !== today) {
+      localStorage.setItem("dailyCount", (dailyCount + 1).toString());
+      localStorage.setItem("lastPlayedDate", today);
+      setDailyCount(dailyCount + 1);
+    } else {
+      setDailyCount(Number(localStorage.getItem("dailyCount")));
     }
   }, []);
 
   return (
     <center>
-      <Header />
+      <Header dailyCount={dailyCount} />
       <br />
       {winner >= 0 && (
         <Picture
@@ -61,6 +69,7 @@ export const Game = () => {
         guesses={guesses}
         animeNamesList={animeNamesList}
         maxGuesses={maxGuesses}
+        dailyCount={dailyCount}
       />
       <Footer />
     </center>

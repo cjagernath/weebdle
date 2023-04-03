@@ -1,5 +1,7 @@
-export const Header: React.FC = () => {
-  const day = 5;
+interface HeaderProps {
+  dailyCount: number;
+}
 
-  return <h1 className="text-5xl font-bold">WEEBDLE #{day}</h1>;
+export const Header: React.FC<HeaderProps> = ({ dailyCount }) => {
+  return <h1 className="text-5xl font-bold">WEEBDLE #{dailyCount}</h1>;
 };

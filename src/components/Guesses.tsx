@@ -9,6 +9,7 @@ interface GuessesProps {
   guesses: Array<number>;
   animeNamesList: Array<string>;
   maxGuesses: Array<number>;
+  dailyCount: number;
 }
 
 export const Guesses: React.FC<GuessesProps> = ({
@@ -18,12 +19,21 @@ export const Guesses: React.FC<GuessesProps> = ({
   guesses,
   animeNamesList,
   maxGuesses,
+  dailyCount,
 }) => {
   const [guessResult, setGuessResult] = useState<boolean>();
 
   const handleGuessSubmit = (guessedCorrect: boolean) => {
     onSubmitGuess(guessedCorrect);
     setGuessResult(guessedCorrect);
+  };
+
+  const handleShare = () => {
+    //copy to clipboard
+    navigator.clipboard.writeText(
+      `Weebdle #${dailyCount}\n${guessNum}\nhttp://weebdle.com/`
+    );
+    alert("Copied to clipboard!");
   };
 
   return (
@@ -44,7 +54,9 @@ export const Guesses: React.FC<GuessesProps> = ({
           )}
           <div />
           <br />
-          <button className="btn btn-accent btn-sm">Share</button>
+          <button className="btn btn-accent btn-sm" onClick={handleShare}>
+            Share
+          </button>
         </div>
       ) : (
         <div>
@@ -61,9 +73,7 @@ export const Guesses: React.FC<GuessesProps> = ({
               ))}
 
               {guessNum !== 6 ? (
-                <p>
-                  You have {7 - guessNum} guesses left {winnerName}
-                </p>
+                <p>You have {7 - guessNum} guesses left</p>
               ) : (
                 <p>You have 1 guess left</p>
               )}
