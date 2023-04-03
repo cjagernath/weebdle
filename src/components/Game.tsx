@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 
 export const Game = () => {
   const [guessNum, setGuessNum] = useState(1);
-  const [winner, setWinner] = useState(0);
+  const [winner, setWinner] = useState(-1);
   const [winnerName, setWinnerName] = useState("");
   const [isCorrect, setIsCorrect] = useState<boolean>(false);
   const [guesses, setGuesses] = useState<number[]>([1]);
@@ -43,13 +43,16 @@ export const Game = () => {
     <center>
       <Header />
       <br />
-      <Picture
-        guessNum={guessNum}
-        winner={winner}
-        guessedCorrect={isCorrect}
-        guesses={guesses}
-        maxGuesses={maxGuesses}
-      />
+      {winner >= 0 && (
+        <Picture
+          guessNum={guessNum}
+          guessedCorrect={isCorrect}
+          guesses={guesses}
+          winner={winner}
+          maxGuesses={maxGuesses}
+        />
+      )}
+
       <br />
       <Guesses
         guessNum={guessNum}

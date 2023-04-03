@@ -46,11 +46,11 @@ export const Animes = [
   },
   {
     name: "One Punch Man",
-    img1: "https://ancdn.fancaps.net/1978067.jpg",
-    img2: "https://ancdn.fancaps.net/1980269.jpg",
+    img1: "https://ancdn.fancaps.net/1982487.jpg",
+    img2: "https://ancdn.fancaps.net/11562424.jpg",
     img3: "https://ancdn.fancaps.net/1983252.jpg",
     img4: "https://ancdn.fancaps.net/1977322.jpg",
-    img5: "https://ancdn.fancaps.net/1979678.jpg",
+    img5: "https://ancdn.fancaps.net/11557910.jpg",
     img6: "https://ancdn.fancaps.net/2064171.jpg",
   },
   {
