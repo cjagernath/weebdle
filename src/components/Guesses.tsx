@@ -29,9 +29,19 @@ export const Guesses: React.FC<GuessesProps> = ({
   };
 
   const handleShare = () => {
-    //copy to clipboard
+    let result = "";
+    for (let i = 1; i < 7; i++) {
+      if (i < guessNum) {
+        result += "🟥 ";
+      } else if (i === guessNum) {
+        result += "🟩 ";
+      } else {
+        result += "⬛ ";
+      }
+    }
+
     navigator.clipboard.writeText(
-      `Weebdle #${dailyCount}\n${guessNum}\nhttp://weebdle.com/`
+      `Weebdle #${dailyCount}\n${result}\n\nhttp://weebdle.com/`
     );
     alert("Copied to clipboard!");
   };
@@ -45,11 +55,11 @@ export const Guesses: React.FC<GuessesProps> = ({
           <br />
           {maxGuesses.map((i) =>
             i < guessNum ? (
-              <button className="btn btn-error btn-xs"></button>
+              <button className="btn btn-error btn-xs btn-square"></button>
             ) : i === guessNum ? (
-              <button className="btn btn-success btn-xs"></button>
+              <button className="btn btn-success btn-xs btn-square"></button>
             ) : (
-              <button className="btn btn-xs"></button>
+              <button className="btn btn-xs btn-square"></button>
             )
           )}
           <div />
@@ -84,11 +94,13 @@ export const Guesses: React.FC<GuessesProps> = ({
               <h1 className="text-4xl font-bold">{winnerName}</h1>
               <br />
               {maxGuesses.map(() => (
-                <button className="btn btn-error btn-xs"></button>
+                <button className="btn btn-error btn-xs btn-square"></button>
               ))}
               <div />
               <br />
-              <button className="btn btn-accent btn-sm">Share</button>
+              <button className="btn btn-accent btn-sm" onClick={handleShare}>
+                Share
+              </button>
             </div>
           )}
         </div>
