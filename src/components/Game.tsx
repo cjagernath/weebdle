@@ -26,12 +26,17 @@ export const Game = () => {
   };
 
   useEffect(() => {
-    const animeNames: string[] = [];
-    Animes.map((anime) => animeNames.push(anime.name));
-    setAnimeNamesList(animeNames);
-    const random = Math.floor(Math.random() * (animeNames.length - 1));
-    setWinner(random);
-    setWinnerName(animeNames[random]);
+    const lastPlayedDate = localStorage.getItem("lastPlayedDate");
+    const currentDate = new Date().toISOString().slice(0, 10);
+
+    if (lastPlayedDate !== currentDate) {
+      const animeNames: string[] = [];
+      Animes.map((anime) => animeNames.push(anime.name));
+      setAnimeNamesList(animeNames);
+      const random = Math.floor(Math.random() * (animeNames.length - 1));
+      setWinner(random);
+      setWinnerName(animeNames[random]);
+    }
   }, []);
 
   return (
