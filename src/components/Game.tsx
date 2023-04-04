@@ -1,4 +1,3 @@
-import { Header } from "./Header";
 import { Picture } from "./Picture";
 import { Guesses } from "./Guesses";
 import { Animes } from "@/Animes";
@@ -49,7 +48,6 @@ export const Game = () => {
 
   return (
     <div>
-      <br />
       {winner >= 0 && (
         <Picture
           guessNum={guessNum}

@@ -7,7 +7,7 @@ import { Header } from "@/components/Header";
 
 export default function Home() {
   const [theme, setTheme] = useState("night");
-  const [dailyCount, setDailyCount] = useState(0);
+  const [dailyCount, setDailyCount] = useState(1);
 
   const handleClick = () => {
     theme === "cupcake" ? setTheme("night") : setTheme("cupcake");
@@ -18,7 +18,9 @@ export default function Home() {
       <div className="flex flex-col h-screen justify-between">
         <center>
           <Header dailyCount={dailyCount} onClick={handleClick} />
+          <br />
           <Game />
+          <br />
           <Footer />
         </center>
       </div>
