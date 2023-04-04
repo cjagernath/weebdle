@@ -2,6 +2,7 @@
 
 import { Game } from "@/components/Game";
 import { useState } from "react";
+import { Footer } from "@/components/Footer";
 
 export default function Home() {
   const [theme, setTheme] = useState("night");
@@ -32,6 +33,7 @@ export default function Home() {
         </svg>
       </label>
       <Game />
+      <Footer />
     </div>
   );
 }

@@ -28,12 +28,13 @@ export const Header: React.FC<HeaderProps> = ({ dailyCount }) => {
       <input type="checkbox" id="my-modal" className="modal-toggle" />
       <div className="modal">
         <div className="modal-box">
-          <div>1: 20</div>
-          <div>2: 20</div>
-          <div>3: 20</div>
-          <div>4: 20</div>
-          <div>5: 20</div>
-          <div>6: 20</div>
+          <h1>Statistics</h1>
+          <div>1: 1</div>
+          <div>2: 3</div>
+          <div>3: 4</div>
+          <div>4: 12</div>
+          <div>5: 16</div>
+          <div>6: 10</div>
           <div className="modal-action">
             <label htmlFor="my-modal" className="btn">
               Close

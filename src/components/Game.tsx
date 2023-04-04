@@ -1,7 +1,6 @@
 import { Header } from "./Header";
 import { Picture } from "./Picture";
 import { Guesses } from "./Guesses";
-import { Footer } from "./Footer";
 import { Animes } from "@/Animes";
 import { useState, useEffect } from "react";
 
@@ -48,30 +47,31 @@ export const Game = () => {
   }, []);
 
   return (
-    <center>
-      <Header dailyCount={dailyCount} />
-      <br />
-      {winner >= 0 && (
-        <Picture
-          guessNum={guessNum}
-          guessedCorrect={isCorrect}
-          guesses={guesses}
-          winner={winner}
-          maxGuesses={maxGuesses}
-        />
-      )}
+    <div className="flex flex-col h-screen justify-between">
+      <center>
+        <Header dailyCount={dailyCount} />
+        <br />
+        {winner >= 0 && (
+          <Picture
+            guessNum={guessNum}
+            guessedCorrect={isCorrect}
+            guesses={guesses}
+            winner={winner}
+            maxGuesses={maxGuesses}
+          />
+        )}
 
-      <br />
-      <Guesses
-        guessNum={guessNum}
-        winnerName={winnerName}
-        onSubmitGuess={handleGuess}
-        guesses={guesses}
-        animeNamesList={animeNamesList}
-        maxGuesses={maxGuesses}
-        dailyCount={dailyCount}
-      />
-      <Footer />
-    </center>
+        <br />
+        <Guesses
+          guessNum={guessNum}
+          winnerName={winnerName}
+          onSubmitGuess={handleGuess}
+          guesses={guesses}
+          animeNamesList={animeNamesList}
+          maxGuesses={maxGuesses}
+          dailyCount={dailyCount}
+        />
+      </center>
+    </div>
   );
 };
