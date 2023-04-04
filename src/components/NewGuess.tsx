@@ -28,7 +28,7 @@ export const NewGuess: React.FC<NewGuessProps> = ({
     <div>
       <input
         type="text"
-        className="input w-full max-w-xs"
+        className="input input-bordered input-info w-full max-w-xs"
         placeholder="Search for an anime and guess!"
         value={input}
         list="animeList"

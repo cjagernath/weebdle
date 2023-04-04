@@ -28,6 +28,7 @@ export const Game = () => {
   useEffect(() => {
     const lastPlayedDate = localStorage.getItem("lastPlayedDate");
     const today = new Date().toISOString().slice(0, 10);
+
     console.log(lastPlayedDate);
     console.log(today);
     const animeNames: string[] = [];
