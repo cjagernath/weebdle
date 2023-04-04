@@ -48,31 +48,27 @@ export const Game = () => {
   }, []);
 
   return (
-    <div className="flex flex-col h-screen justify-between">
-      <center>
-        <Header dailyCount={dailyCount} />
-        <br />
-        {winner >= 0 && (
-          <Picture
-            guessNum={guessNum}
-            guessedCorrect={isCorrect}
-            guesses={guesses}
-            winner={winner}
-            maxGuesses={maxGuesses}
-          />
-        )}
-
-        <br />
-        <Guesses
+    <div>
+      <br />
+      {winner >= 0 && (
+        <Picture
           guessNum={guessNum}
-          winnerName={winnerName}
-          onSubmitGuess={handleGuess}
+          guessedCorrect={isCorrect}
           guesses={guesses}
-          animeNamesList={animeNamesList}
+          winner={winner}
           maxGuesses={maxGuesses}
-          dailyCount={dailyCount}
         />
-      </center>
+      )}
+      <br />
+      <Guesses
+        guessNum={guessNum}
+        winnerName={winnerName}
+        onSubmitGuess={handleGuess}
+        guesses={guesses}
+        animeNamesList={animeNamesList}
+        maxGuesses={maxGuesses}
+        dailyCount={dailyCount}
+      />
     </div>
   );
 };
