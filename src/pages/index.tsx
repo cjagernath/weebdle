@@ -10,7 +10,7 @@ export default function Home() {
   const [dailyCount, setDailyCount] = useState(1);
 
   const handleClick = () => {
-    theme === "cupcake" ? setTheme("night") : setTheme("cupcake");
+    theme === "pastel" ? setTheme("night") : setTheme("pastel");
   };
 
   return (
