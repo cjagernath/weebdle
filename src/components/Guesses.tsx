@@ -72,8 +72,8 @@ export const Guesses: React.FC<GuessesProps> = ({
         <div>
           {guessNum < 7 ? (
             <div>
-              {guesses.map(() => (
-                <div>
+              {guesses.map((i) => (
+                <div key={i}>
                   <NewGuess
                     winnerName={winnerName}
                     onSubmit={handleGuessSubmit}
