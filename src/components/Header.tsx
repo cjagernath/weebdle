@@ -1,9 +1,14 @@
 interface HeaderProps {
   dailyCount: number;
   onClick: () => void;
+  scores: number[];
 }
 
-export const Header: React.FC<HeaderProps> = ({ dailyCount, onClick }) => {
+export const Header: React.FC<HeaderProps> = ({
+  dailyCount,
+  onClick,
+  scores,
+}) => {
   const handleClickSubmit = () => {
     onClick();
   };
@@ -144,12 +149,9 @@ export const Header: React.FC<HeaderProps> = ({ dailyCount, onClick }) => {
       <div className="modal">
         <div className="modal-box">
           <h1 className="text-3xl font-bold">Statistics</h1>
-          <div>1: 1</div>
-          <div>2: 3</div>
-          <div>3: 4</div>
-          <div>4: 12</div>
-          <div>5: 16</div>
-          <div>6: 10</div>
+          <br />
+          <div>{scores}</div>
+
           <div className="modal-action">
             <label htmlFor="stats" className="btn">
               Close
