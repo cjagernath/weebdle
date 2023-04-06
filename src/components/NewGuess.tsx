@@ -14,8 +14,6 @@ export const NewGuess: React.FC<NewGuessProps> = ({
 }) => {
   const [input, setInput] = useState("");
   const [disableGuess, setDisableGuess] = useState(false);
-  const options = [];
-  animeNamesList.map((anime) => options.push(anime));
 
   function handleSubmit() {
     const guessedCorrect =
