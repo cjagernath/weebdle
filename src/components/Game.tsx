@@ -16,14 +16,8 @@ export const Game: React.FC<GameProps> = ({ onReset, updateScores }) => {
   const [guesses, setGuesses] = useState<number[]>([1]);
   const [animeNamesList, setAnimeNamesList] = useState<string[]>([]);
   const [dailyCount, setDailyCount] = useState(0);
-  const GuessStats: { [key: number]: number } = {
-    1: 0,
-    2: 0,
-    3: 0,
-    4: 0,
-    5: 0,
-    6: 0,
-  };
+  const [guessesStats, setGuessesStats] = useState<number[]>([1]);
+  const [currentDay, setCurrentDay] = useState("");
 
   const maxGuesses = [1, 2, 3, 4, 5, 6];
   let dayCounter = 0;
@@ -33,6 +27,7 @@ export const Game: React.FC<GameProps> = ({ onReset, updateScores }) => {
     if (dayOfYear !== prevDay) {
       dayCounter++;
       onReset(dayCounter);
+      setDailyCount(dayCounter);
       prevDay = dayOfYear;
     }
     const animeNames: string[] = [];
@@ -51,7 +46,6 @@ export const Game: React.FC<GameProps> = ({ onReset, updateScores }) => {
       0, 2, 5, 4, 3, 1, 0, 2, 5, 4, 3, 1, 0, 2, 5, 4, 3, 1, 0, 2, 5, 4, 3, 1, 0,
       2, 5, 4, 3, 1, 0, 2, 5, 4, 3, 1, 0, 2, 5, 4, 3, 1, 0, 2, 5, 4, 3, 1, 0,
     ];
-    console.log(dayOfYear);
     const winner = animesByDay[dayOfYear - 1];
     const winnerName = animeNames[winner];
     return { winner, winnerName };
@@ -63,12 +57,15 @@ export const Game: React.FC<GameProps> = ({ onReset, updateScores }) => {
     if (!guessedCorrect && guessNum < 6) {
       setGuessNum(guessNum + 1);
       setGuesses([...guesses, guessNum + 1]);
-      GuessStats[guessNum]++;
     } else if (!guessedCorrect && guessNum === 6) {
       setGuessNum(guessNum + 1);
+      updateScores(guessesStats);
+      localStorage.setItem("lastPlayedDate", currentDay);
+    } else if (guessedCorrect) {
+      localStorage.setItem("lastPlayedDate", currentDay);
+      localStorage.setItem("guessNum", guessNum.toLocaleString());
+      updateScores(guessesStats);
     }
-    const GuessStatsArray = Object.values(GuessStats);
-    updateScores(GuessStatsArray);
   };
 
   useEffect(() => {
@@ -77,10 +74,21 @@ export const Game: React.FC<GameProps> = ({ onReset, updateScores }) => {
       (today.getTime() - new Date(today.getFullYear(), 0, 1).getTime()) /
         (1000 * 60 * 60 * 24)
     );
-    const { winner, winnerName } = GetAnimeByDate(dayOfYear);
-    setWinner(winner);
-    setWinnerName(winnerName);
-    setDailyCount(dayCounter);
+    setCurrentDay(today.toISOString().slice(1, 10));
+    const lastPlayedDate = localStorage.getItem("lastPlayedDate");
+    if (lastPlayedDate !== currentDay) {
+      const { winner, winnerName } = GetAnimeByDate(dayOfYear);
+      setWinner(winner);
+      setWinnerName(winnerName);
+      setGuessNum(1);
+      setGuesses([1]);
+    }
+    if (lastPlayedDate === currentDay) {
+      const savedGuessNum = localStorage.getItem("guessNum");
+      if (savedGuessNum !== null) {
+        setGuessNum(parseInt(savedGuessNum) + 1);
+      }
+    }
   }, []);
 
   return (
