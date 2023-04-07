@@ -1,7 +1,5 @@
-// pages/index.js
-
+import { useEffect, useState } from "react";
 import { Game } from "@/components/Game";
-import { useState } from "react";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 
@@ -10,8 +8,19 @@ export default function Home() {
   const [dailyCount, setDailyCount] = useState(0);
   const [scores, setScores] = useState([0]);
 
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme) {
+        setTheme(savedTheme);
+      }
+    }
+  }, []);
+
   const handleClick = () => {
-    theme === "pastel" ? setTheme("night") : setTheme("pastel");
+    const newTheme = theme === "pastel" ? "night" : "pastel";
+    setTheme(newTheme);
+    localStorage.setItem("theme", newTheme);
   };
 
   const handleScoreUpdate = (scores: number[]) => {
