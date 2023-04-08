@@ -39,7 +39,7 @@ export const NewGuess: React.FC<NewGuessProps> = ({
         ))}
       </datalist>
       {disableGuess ? (
-        <button className="btn btn-square btn-disabled btn-sm">
+        <div className="btn btn-square btn-disabled btn-sm">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6"
@@ -54,7 +54,7 @@ export const NewGuess: React.FC<NewGuessProps> = ({
               d="M6 18L18 6M6 6l12 12"
             />
           </svg>
-        </button>
+        </div>
       ) : (
         <button
           className="btn btn-accent btn-sm"
