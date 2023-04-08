@@ -4,6 +4,7 @@ export function Statistics() {
   useEffect(() => {
     if (typeof window !== "undefined") {
       const guessStats = localStorage.getItem("guessStats");
+      console.log(guessStats);
       if (guessStats !== null) {
         const guessStatsMap = Object.keys(parseInt(guessStats)).map(
           (guessNum) => (
@@ -16,5 +17,5 @@ export function Statistics() {
     }
   }, []);
 
-  return <div>Statis</div>;
+  return <div>Statistics</div>;
 }
