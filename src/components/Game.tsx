@@ -17,8 +17,12 @@ export const Game: React.FC<GameProps> = ({ onReset, updateScores }) => {
   const [animeNamesList, setAnimeNamesList] = useState<string[]>([]);
   const [dailyCount, setDailyCount] = useState(0);
   const [guessesStats, setGuessesStats] = useState<number[]>([1]);
-  const [currentDay, setCurrentDay] = useState("");
-
+  const today = new Date();
+  const dayOfYear = Math.ceil(
+    (today.getTime() - new Date(today.getFullYear(), 0, 1).getTime()) /
+      (1000 * 60 * 60 * 24)
+  );
+  const currentDay = today.toDateString();
   const maxGuesses = [1, 2, 3, 4, 5, 6];
   let dayCounter = 0;
   let prevDay = 0;
@@ -61,6 +65,7 @@ export const Game: React.FC<GameProps> = ({ onReset, updateScores }) => {
       setGuessNum(guessNum + 1);
       updateScores(guessesStats);
       localStorage.setItem("lastPlayedDate", currentDay);
+      localStorage.setItem("guessNum", guessNum.toLocaleString());
     } else if (guessedCorrect) {
       localStorage.setItem("lastPlayedDate", currentDay);
       localStorage.setItem("guessNum", guessNum.toLocaleString());
@@ -69,24 +74,25 @@ export const Game: React.FC<GameProps> = ({ onReset, updateScores }) => {
   };
 
   useEffect(() => {
-    const today = new Date();
-    const dayOfYear = Math.ceil(
-      (today.getTime() - new Date(today.getFullYear(), 0, 1).getTime()) /
-        (1000 * 60 * 60 * 24)
-    );
-    setCurrentDay(today.toISOString().slice(1, 10));
     const lastPlayedDate = localStorage.getItem("lastPlayedDate");
+
     //if (lastPlayedDate !== currentDay) {
     const { winner, winnerName } = GetAnimeByDate(dayOfYear);
     setWinner(winner);
     setWinnerName(winnerName);
     //}
-    //if (lastPlayedDate === currentDay) {
-    // const savedGuessNum = localStorage.getItem("guessNum");
-    // if (savedGuessNum !== null) {
-    //   setGuessNum(parseInt(savedGuessNum) + 1);
-    //}
-    //}
+    if (lastPlayedDate === currentDay) {
+      const savedGuessNum = localStorage.getItem("guessNum");
+      if (savedGuessNum !== null) {
+        if (parseInt(savedGuessNum) !== 7) {
+          setGuessNum(parseInt(savedGuessNum));
+          setIsCorrect(true);
+        } else if (parseInt(savedGuessNum) < 7) {
+          setGuessNum(7);
+          setIsCorrect(false);
+        }
+      }
+    }
   }, []);
 
   return (
@@ -109,6 +115,7 @@ export const Game: React.FC<GameProps> = ({ onReset, updateScores }) => {
         animeNamesList={animeNamesList}
         maxGuesses={maxGuesses}
         dailyCount={dailyCount}
+        savedGuessCorrect={isCorrect}
       />
     </div>
   );
