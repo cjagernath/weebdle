@@ -6,7 +6,6 @@ import { Header } from "@/components/Header";
 export default function Home() {
   const [theme, setTheme] = useState("night");
   const [dailyCount, setDailyCount] = useState(0);
-  const [scores, setScores] = useState([0]);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -23,10 +22,6 @@ export default function Home() {
     localStorage.setItem("theme", newTheme);
   };
 
-  const handleScoreUpdate = (scores: number[]) => {
-    setScores(scores);
-  };
-
   const handleStats = (dailyCount: number) => {
     setDailyCount(dailyCount);
   };
@@ -35,13 +30,9 @@ export default function Home() {
     <div data-theme={theme}>
       <div className="flex flex-col h-screen justify-between">
         <center>
-          <Header
-            dailyCount={dailyCount}
-            onClick={handleClick}
-            scores={scores}
-          />
+          <Header dailyCount={dailyCount} onClick={handleClick} />
           <br />
-          <Game onReset={handleStats} updateScores={handleScoreUpdate} />
+          <Game onReset={handleStats} />
         </center>
       </div>
     </div>

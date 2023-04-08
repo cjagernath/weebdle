@@ -1,18 +1,16 @@
+import { Statistics } from "./Statistics";
+import { DMCA } from "./DMCA";
+import { Rules } from "./Rules";
+
 interface HeaderProps {
   dailyCount: number;
   onClick: () => void;
-  scores: number[];
 }
 
-export const Header: React.FC<HeaderProps> = ({
-  dailyCount,
-  onClick,
-  scores,
-}) => {
+export const Header: React.FC<HeaderProps> = ({ dailyCount, onClick }) => {
   const handleClickSubmit = () => {
     onClick();
   };
-  const guessStats = localStorage.getItem("guessStats");
 
   return (
     <div className="navbar bg-base-100">
@@ -105,37 +103,7 @@ export const Header: React.FC<HeaderProps> = ({
       <input type="checkbox" id="DMCA" className="modal-toggle" />
       <div className="modal">
         <div className="modal-box">
-          <h1 className="text-3xl font-bold">DMCA Request</h1>
-          <br />
-          <div>
-            To request images to no longer be supported on the site, please send
-            a request through email to weebdle@gmail.com with the following
-            info:
-          </div>
-          <br />
-          <div className="text-left">Subject: DMCA Infringement Notice</div>
-          <br />
-          <div className="text-left">
-            Name of IP Holder requesting the removal.
-          </div>
-          <br />
-          <div className="text-left">
-            A legal certification that you represent the IP Holder in this
-            matter.
-          </div>
-          <br />
-          <div className="text-left">Address and contact information.</div>
-          <br />
-          <div className="text-left">Name of IP URLs of Images to remove</div>
-          <br />
-          <div className="text-left">
-            Name of IP #2 URLs of Images to remove
-          </div>
-          <br />
-          <div className="text-left">
-            Missing information means we will be unable to handle your request.
-            We should be able to get to it within 24-72 hours.
-          </div>
+          <DMCA />
 
           <div className="modal-action">
             <label htmlFor="DMCA" className="btn">
@@ -150,7 +118,8 @@ export const Header: React.FC<HeaderProps> = ({
         <div className="modal-box">
           <h1 className="text-3xl font-bold">Statistics</h1>
           <br />
-          <div>{guessStats}</div>
+
+          <Statistics />
 
           <div className="modal-action">
             <label htmlFor="stats" className="btn">
@@ -165,34 +134,7 @@ export const Header: React.FC<HeaderProps> = ({
         <div className="modal-box">
           <h1 className="text-3xl font-bold">How to play:</h1>
           <br />
-          <div>
-            <p className="text-left">
-              1. Each day, a new anime will be randomly selected by the game.
-            </p>
-            <p className="text-left">
-              2. You will have six chances to guess the name of the anime.
-            </p>
-            <p className="text-left">
-              3. Each time you make a wrong guess, another frame of the anime
-              will be revealed to you to help you guess.
-            </p>
-            <p className="text-left">
-              4. To make a guess, type the name of the anime into the input
-              field provided and click "Submit".
-            </p>
-            <p className="text-left">
-              5. If you guess the correct anime within the six tries, you win
-              the game.
-            </p>
-            <p className="text-left">
-              6. If you do not guess the correct anime within six tries, you
-              lose the game.
-            </p>
-            <p className="text-left">
-              7. You can play the game again the next day to try to guess a new
-              randomly selected anime.
-            </p>
-          </div>
+          <Rules />
 
           <div className="modal-action">
             <label htmlFor="rules" className="btn">

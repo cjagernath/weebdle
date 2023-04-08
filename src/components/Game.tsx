@@ -5,10 +5,9 @@ import { useState, useEffect } from "react";
 
 interface GameProps {
   onReset: (dayCounter: number) => void;
-  updateScores: (scores: number[]) => void;
 }
 
-export const Game: React.FC<GameProps> = ({ onReset, updateScores }) => {
+export const Game: React.FC<GameProps> = ({ onReset }) => {
   const [guessNum, setGuessNum] = useState(1);
   const [winner, setWinner] = useState(-1);
   const [winnerName, setWinnerName] = useState("");
