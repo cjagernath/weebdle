@@ -10,6 +10,7 @@ interface GuessesProps {
   animeNamesList: Array<string>;
   maxGuesses: Array<number>;
   dailyCount: number;
+  savedGuessCorrect: boolean;
 }
 
 export const Guesses: React.FC<GuessesProps> = ({
@@ -20,6 +21,7 @@ export const Guesses: React.FC<GuessesProps> = ({
   animeNamesList,
   maxGuesses,
   dailyCount,
+  savedGuessCorrect,
 }) => {
   const [guessResult, setGuessResult] = useState<boolean>();
 
@@ -48,7 +50,7 @@ export const Guesses: React.FC<GuessesProps> = ({
 
   return (
     <div>
-      {guessResult ? (
+      {guessResult || savedGuessCorrect ? (
         <div>
           <h1 className="text-2xl font-bold">You got it!</h1>
           <h1 className="text-4xl font-bold">{winnerName}</h1>
