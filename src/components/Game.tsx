@@ -65,7 +65,7 @@ export const Game: React.FC<GameProps> = ({ onReset, updateScores }) => {
       setGuessNum(guessNum + 1);
       updateScores(guessesStats);
       localStorage.setItem("lastPlayedDate", currentDay);
-      localStorage.setItem("guessNum", guessNum.toLocaleString());
+      localStorage.setItem("guessNum", (7).toLocaleString());
     } else if (guessedCorrect) {
       localStorage.setItem("lastPlayedDate", currentDay);
       localStorage.setItem("guessNum", guessNum.toLocaleString());
@@ -76,18 +76,16 @@ export const Game: React.FC<GameProps> = ({ onReset, updateScores }) => {
   useEffect(() => {
     const lastPlayedDate = localStorage.getItem("lastPlayedDate");
 
-    //if (lastPlayedDate !== currentDay) {
     const { winner, winnerName } = GetAnimeByDate(dayOfYear);
     setWinner(winner);
     setWinnerName(winnerName);
-    //}
     if (lastPlayedDate === currentDay) {
       const savedGuessNum = localStorage.getItem("guessNum");
       if (savedGuessNum !== null) {
         if (parseInt(savedGuessNum) !== 7) {
           setGuessNum(parseInt(savedGuessNum));
           setIsCorrect(true);
-        } else if (parseInt(savedGuessNum) < 7) {
+        } else if (parseInt(savedGuessNum) === 7) {
           setGuessNum(7);
           setIsCorrect(false);
         }
