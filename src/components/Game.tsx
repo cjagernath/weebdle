@@ -75,7 +75,6 @@ export const Game: React.FC<GameProps> = ({ onReset, updateScores }) => {
 
   useEffect(() => {
     const lastPlayedDate = localStorage.getItem("lastPlayedDate");
-
     const { winner, winnerName } = GetAnimeByDate(dayOfYear);
     setWinner(winner);
     setWinnerName(winnerName);

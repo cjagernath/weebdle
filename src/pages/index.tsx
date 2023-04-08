@@ -42,8 +42,6 @@ export default function Home() {
           />
           <br />
           <Game onReset={handleStats} updateScores={handleScoreUpdate} />
-          <br />
-          <Footer />
         </center>
       </div>
     </div>
