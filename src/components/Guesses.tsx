@@ -55,13 +55,20 @@ export const Guesses: React.FC<GuessesProps> = ({
           <br />
           {maxGuesses.map((i) => {
             if (i < guessNum) {
-              return <div className="btn btn-error btn-xs btn-square"></div>;
+              return (
+                <div key={i} className="btn btn-error btn-xs btn-square"></div>
+              );
             }
             if (i === guessNum) {
-              return <div className="btn btn-success btn-xs btn-square"></div>;
+              return (
+                <div
+                  key={i}
+                  className="btn btn-success btn-xs btn-square"
+                ></div>
+              );
             }
             if (i > guessNum) {
-              return <div className="btn btn-xs btn-square"></div>;
+              return <div key={i} className="btn btn-xs btn-square"></div>;
             }
           })}
           <div />
