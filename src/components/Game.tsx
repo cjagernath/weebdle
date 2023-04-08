@@ -76,19 +76,17 @@ export const Game: React.FC<GameProps> = ({ onReset, updateScores }) => {
     );
     setCurrentDay(today.toISOString().slice(1, 10));
     const lastPlayedDate = localStorage.getItem("lastPlayedDate");
-    if (lastPlayedDate !== currentDay) {
-      const { winner, winnerName } = GetAnimeByDate(dayOfYear);
-      setWinner(winner);
-      setWinnerName(winnerName);
-      setGuessNum(1);
-      setGuesses([1]);
-    }
-    if (lastPlayedDate === currentDay) {
-      const savedGuessNum = localStorage.getItem("guessNum");
-      if (savedGuessNum !== null) {
-        setGuessNum(parseInt(savedGuessNum) + 1);
-      }
-    }
+    //if (lastPlayedDate !== currentDay) {
+    const { winner, winnerName } = GetAnimeByDate(dayOfYear);
+    setWinner(winner);
+    setWinnerName(winnerName);
+    //}
+    //if (lastPlayedDate === currentDay) {
+    // const savedGuessNum = localStorage.getItem("guessNum");
+    // if (savedGuessNum !== null) {
+    //   setGuessNum(parseInt(savedGuessNum) + 1);
+    //}
+    //}
   }, []);
 
   return (
