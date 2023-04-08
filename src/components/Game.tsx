@@ -16,7 +16,18 @@ export const Game: React.FC<GameProps> = ({ onReset, updateScores }) => {
   const [guesses, setGuesses] = useState<number[]>([1]);
   const [animeNamesList, setAnimeNamesList] = useState<string[]>([]);
   const [dailyCount, setDailyCount] = useState(0);
-  const [guessesStats, setGuessesStats] = useState<number[]>([1]);
+  type GuessFrequency = {
+    [guessNum: number]: number;
+  };
+  const guessStats: GuessFrequency = {
+    1: 0,
+    2: 0,
+    3: 0,
+    4: 0,
+    5: 0,
+    6: 0,
+    7: 0,
+  };
   const today = new Date();
   const dayOfYear = Math.ceil(
     (today.getTime() - new Date(today.getFullYear(), 0, 1).getTime()) /
@@ -63,13 +74,16 @@ export const Game: React.FC<GameProps> = ({ onReset, updateScores }) => {
       setGuesses([...guesses, guessNum + 1]);
     } else if (!guessedCorrect && guessNum === 6) {
       setGuessNum(guessNum + 1);
-      updateScores(guessesStats);
       localStorage.setItem("lastPlayedDate", currentDay);
       localStorage.setItem("guessNum", (7).toLocaleString());
+      localStorage.setItem("guessStats", (guessStats[7] + 1).toLocaleString());
     } else if (guessedCorrect) {
       localStorage.setItem("lastPlayedDate", currentDay);
       localStorage.setItem("guessNum", guessNum.toLocaleString());
-      updateScores(guessesStats);
+      localStorage.setItem(
+        "guessStats",
+        (guessStats[guessNum] + 1).toLocaleString()
+      );
     }
   };
 

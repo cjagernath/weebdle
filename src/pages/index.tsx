@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Game } from "@/components/Game";
-import { Footer } from "@/components/Footer";
+//import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 
 export default function Home() {

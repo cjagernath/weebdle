@@ -12,6 +12,7 @@ export const Header: React.FC<HeaderProps> = ({
   const handleClickSubmit = () => {
     onClick();
   };
+  const guessStats = localStorage.getItem("guessStats");
 
   return (
     <div className="navbar bg-base-100">
@@ -101,7 +102,6 @@ export const Header: React.FC<HeaderProps> = ({
           </svg>
         </label>
       </div>
-      {/* Put this part before </body> tag */}
       <input type="checkbox" id="DMCA" className="modal-toggle" />
       <div className="modal">
         <div className="modal-box">
@@ -150,7 +150,7 @@ export const Header: React.FC<HeaderProps> = ({
         <div className="modal-box">
           <h1 className="text-3xl font-bold">Statistics</h1>
           <br />
-          <div>{scores}</div>
+          <div>{guessStats}</div>
 
           <div className="modal-action">
             <label htmlFor="stats" className="btn">
