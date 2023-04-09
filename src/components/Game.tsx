@@ -15,18 +15,8 @@ export const Game: React.FC<GameProps> = ({ onReset }) => {
   const [guesses, setGuesses] = useState<number[]>([1]);
   const [animeNamesList, setAnimeNamesList] = useState<string[]>([]);
   const [dailyCount, setDailyCount] = useState(0);
-  type GuessFrequency = {
-    [guessNum: number]: number;
-  };
-  const guessStats: GuessFrequency = {
-    1: 0,
-    2: 0,
-    3: 0,
-    4: 0,
-    5: 0,
-    6: 0,
-    7: 0,
-  };
+  const guessesStats = [0, 0, 0, 0, 0, 0, 0];
+  const [savedGuessesArray, setSavedGuessesArray] = useState<number[]>([]);
   const today = new Date();
   const dayOfYear = Math.ceil(
     (today.getTime() - new Date(today.getFullYear(), 0, 1).getTime()) /
@@ -75,13 +65,16 @@ export const Game: React.FC<GameProps> = ({ onReset }) => {
       setGuessNum(guessNum + 1);
       localStorage.setItem("lastPlayedDate", currentDay);
       localStorage.setItem("guessNum", (7).toLocaleString());
-      localStorage.setItem("guessStats", (guessStats[7] + 1).toLocaleString());
+      localStorage.setItem(
+        "guessStats",
+        (guessesStats[7] + 1).toLocaleString()
+      );
     } else if (guessedCorrect) {
       localStorage.setItem("lastPlayedDate", currentDay);
       localStorage.setItem("guessNum", guessNum.toLocaleString());
       localStorage.setItem(
         "guessStats",
-        (guessStats[guessNum] + 1).toLocaleString()
+        (guessesStats[guessNum] + 1).toLocaleString()
       );
     }
   };
@@ -91,6 +84,14 @@ export const Game: React.FC<GameProps> = ({ onReset }) => {
     const { winner, winnerName } = GetAnimeByDate(dayOfYear);
     setWinner(winner);
     setWinnerName(winnerName);
+    const savedGuessesStats = localStorage.getItem("guessStats");
+    if (!savedGuessesStats) {
+      localStorage.setItem("guessStats", JSON.stringify(guessesStats));
+    } else if (savedGuessesStats) {
+      setSavedGuessesArray(JSON.parse(savedGuessesStats));
+      console.log(savedGuessesArray);
+    }
+
     if (lastPlayedDate === currentDay) {
       const savedGuessNum = localStorage.getItem("guessNum");
       if (savedGuessNum !== null) {

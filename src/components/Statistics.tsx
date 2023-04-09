@@ -1,21 +1,22 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export function Statistics() {
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const guessStats = localStorage.getItem("guessStats");
-      console.log(guessStats);
-      if (guessStats !== null) {
-        const guessStatsMap = Object.keys(parseInt(guessStats)).map(
-          (guessNum) => (
-            <div key={guessNum}>
-              {guessNum} : {guessStats[parseInt(guessNum)]}
-            </div>
-          )
-        );
-      }
-    }
-  }, []);
+  const [guessesStats, setGuessesStats] = useState<number[]>([]);
 
-  return <div>Statistics</div>;
+  useEffect(() => {
+    const savedGuessesStats = localStorage.getItem("guessesStats");
+    if (savedGuessesStats) {
+      setGuessesStats(JSON.parse(savedGuessesStats));
+    }
+  }, [guessesStats]);
+
+  return (
+    <div>
+      <ul>
+        {guessesStats.map((num, index) => (
+          <li key={index}>{num}</li>
+        ))}
+      </ul>
+    </div>
+  );
 }
