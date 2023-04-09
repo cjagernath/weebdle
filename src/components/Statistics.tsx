@@ -39,7 +39,13 @@ export const Statistics = () => {
           <h1>Win Percentage</h1>
         </div>
       </div>
-      <h1>guess distribution</h1>
+      <div className="stat">
+        {guessesStats.slice(1, 7).map((value, index) => (
+          <h1 key={index}>
+            {index + 1} : {value}
+          </h1>
+        ))}
+      </div>
     </div>
   );
 };
