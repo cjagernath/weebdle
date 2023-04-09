@@ -105,9 +105,9 @@ export const Header: React.FC<HeaderProps> = ({ dailyCount, onClick }) => {
         <div className="modal-box">
           <DMCA />
 
-          <div className="modal-action">
-            <label htmlFor="DMCA" className="btn">
-              Close
+          <div className="modal-action absolute top-0 right-5">
+            <label htmlFor="DMCA" className="btn max-w-xs">
+              X
             </label>
           </div>
         </div>
@@ -121,9 +121,9 @@ export const Header: React.FC<HeaderProps> = ({ dailyCount, onClick }) => {
 
           <Statistics />
 
-          <div className="modal-action">
-            <label htmlFor="stats" className="btn">
-              Close
+          <div className="modal-action absolute top-0 right-5">
+            <label htmlFor="stats" className="btn max-w-xs">
+              X
             </label>
           </div>
         </div>
@@ -136,9 +136,9 @@ export const Header: React.FC<HeaderProps> = ({ dailyCount, onClick }) => {
           <br />
           <Rules />
 
-          <div className="modal-action">
-            <label htmlFor="rules" className="btn">
-              Close
+          <div className="modal-action absolute top-0 right-5">
+            <label htmlFor="rules" className="btn max-w-xs">
+              X
             </label>
           </div>
         </div>
