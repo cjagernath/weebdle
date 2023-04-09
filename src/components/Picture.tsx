@@ -43,7 +43,7 @@ export const Picture: React.FC<PictureProps> = ({
           {maxGuesses.map((i, index) => (
             <button
               key={index}
-              className="btn btn-accent btn-sm"
+              className="btn btn-accent btn-sm m-0.5"
               onClick={() => changeDisplay(i)}
             >
               {i}
@@ -55,7 +55,7 @@ export const Picture: React.FC<PictureProps> = ({
           {guesses.map((i, index) => (
             <button
               key={index}
-              className="btn btn-accent btn-sm"
+              className="btn btn-accent btn-sm m-0.5"
               onClick={() => changeDisplay(i)}
             >
               {i}

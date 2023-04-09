@@ -39,7 +39,7 @@ export const Header: React.FC<HeaderProps> = ({ dailyCount, onClick }) => {
         <h1 className="text-5xl font-bold">Weebdle #{dailyCount}</h1>
       </div>
       <div className="navbar-end">
-        <label htmlFor="DMCA" className="btn">
+        <label htmlFor="DMCA" className="btn m-1">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5"
@@ -66,7 +66,7 @@ export const Header: React.FC<HeaderProps> = ({ dailyCount, onClick }) => {
           </svg>
         </label>
 
-        <label htmlFor="stats" className="btn">
+        <label htmlFor="stats" className="btn m-1">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5"
@@ -83,7 +83,7 @@ export const Header: React.FC<HeaderProps> = ({ dailyCount, onClick }) => {
           </svg>
         </label>
 
-        <label htmlFor="rules" className="btn">
+        <label htmlFor="rules" className="btn m-1">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5"
