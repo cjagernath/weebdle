@@ -17,7 +17,7 @@ export default function Home() {
   }, []);
 
   const handleClick = () => {
-    const newTheme = theme === "cupcake" ? "night" : "cupcake";
+    const newTheme = theme === "light" ? "night" : "light";
     setTheme(newTheme);
     localStorage.setItem("theme", newTheme);
   };
