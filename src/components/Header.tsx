@@ -5,9 +5,14 @@ import { Rules } from "./Rules";
 interface HeaderProps {
   dailyCount: number;
   onClick: () => void;
+  gameFinished: boolean;
 }
 
-export const Header: React.FC<HeaderProps> = ({ dailyCount, onClick }) => {
+export const Header: React.FC<HeaderProps> = ({
+  dailyCount,
+  onClick,
+  gameFinished,
+}) => {
   const handleClickSubmit = () => {
     onClick();
   };
@@ -107,7 +112,7 @@ export const Header: React.FC<HeaderProps> = ({ dailyCount, onClick }) => {
 
           <div className="modal-action absolute top-0 right-5">
             <label htmlFor="DMCA" className="btn max-w-xs">
-              X
+              ✕
             </label>
           </div>
         </div>
@@ -119,11 +124,11 @@ export const Header: React.FC<HeaderProps> = ({ dailyCount, onClick }) => {
           <h1 className="text-3xl font-bold">Statistics</h1>
           <br />
 
-          <Statistics />
+          <Statistics gameFinished={gameFinished} />
 
           <div className="modal-action absolute top-0 right-5">
             <label htmlFor="stats" className="btn max-w-xs">
-              X
+              ✕
             </label>
           </div>
         </div>
@@ -137,8 +142,8 @@ export const Header: React.FC<HeaderProps> = ({ dailyCount, onClick }) => {
           <Rules />
 
           <div className="modal-action absolute top-0 right-5">
-            <label htmlFor="rules" className="btn max-w-xs">
-              X
+            <label htmlFor="rules" className="btn">
+              ✕
             </label>
           </div>
         </div>

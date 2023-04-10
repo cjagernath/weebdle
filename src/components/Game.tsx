@@ -5,9 +5,10 @@ import { useState, useEffect } from "react";
 
 interface GameProps {
   onReset: (dayCounter: number) => void;
+  onFinished: (gameOver: boolean) => void;
 }
 
-export const Game: React.FC<GameProps> = ({ onReset }) => {
+export const Game: React.FC<GameProps> = ({ onReset, onFinished }) => {
   const [guessNum, setGuessNum] = useState(1);
   const [winner, setWinner] = useState(-1);
   const [winnerName, setWinnerName] = useState("");
@@ -68,12 +69,14 @@ export const Game: React.FC<GameProps> = ({ onReset }) => {
       const updatedGuessesArray = [...savedGuessesArray];
       updatedGuessesArray[7] = updatedGuessesArray[7] + 1;
       localStorage.setItem("guessStats", JSON.stringify(updatedGuessesArray));
+      onFinished(true);
     } else if (guessedCorrect) {
       localStorage.setItem("lastPlayedDate", currentDay);
       localStorage.setItem("guessNum", guessNum.toLocaleString());
       const updatedGuessesArray = [...savedGuessesArray];
       updatedGuessesArray[guessNum] = updatedGuessesArray[guessNum] + 1;
       localStorage.setItem("guessStats", JSON.stringify(updatedGuessesArray));
+      onFinished(true);
     }
   };
 

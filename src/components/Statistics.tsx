@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 
-export const Statistics = () => {
+interface StatsProps {
+  gameFinished: boolean;
+}
+
+export const Statistics: React.FC<StatsProps> = ({ gameFinished }) => {
   const [guessesStats, setGuessesStats] = useState<number[]>([]);
   const [totalPlays, setTotalPlays] = useState(0);
   const [totalWinP, setTotalWinP] = useState(0.0);
@@ -10,7 +14,7 @@ export const Statistics = () => {
     if (savedGuessesStats) {
       setGuessesStats(JSON.parse(savedGuessesStats));
     }
-  }, []);
+  }, [gameFinished]);
 
   useEffect(() => {
     if (guessesStats.length > 0) {
@@ -24,6 +28,7 @@ export const Statistics = () => {
       //win percent
       const winP = plays === 0 ? 0 : Math.round((wins / plays) * 100);
       setTotalWinP(winP);
+      console.log(gameFinished);
     }
   }, [guessesStats]);
 

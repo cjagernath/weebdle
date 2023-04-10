@@ -6,6 +6,7 @@ import { Header } from "@/components/Header";
 export default function Home() {
   const [theme, setTheme] = useState("night");
   const [dailyCount, setDailyCount] = useState(0);
+  const [gameFinished, setGameFinished] = useState<boolean>(false);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -22,17 +23,25 @@ export default function Home() {
     localStorage.setItem("theme", newTheme);
   };
 
-  const handleStats = (dailyCount: number) => {
+  const handleDay = (dailyCount: number) => {
     setDailyCount(dailyCount);
+  };
+
+  const handleGameOver = (gameOver: boolean) => {
+    setGameFinished(gameOver);
   };
 
   return (
     <div data-theme={theme}>
       <div className="flex flex-col h-screen justify-between">
         <center>
-          <Header dailyCount={dailyCount} onClick={handleClick} />
+          <Header
+            dailyCount={dailyCount}
+            onClick={handleClick}
+            gameFinished={gameFinished}
+          />
           <br />
-          <Game onReset={handleStats} />
+          <Game onReset={handleDay} onFinished={handleGameOver} />
         </center>
       </div>
     </div>
