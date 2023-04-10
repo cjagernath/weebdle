@@ -28,7 +28,6 @@ export const Statistics: React.FC<StatsProps> = ({ gameFinished }) => {
       //win percent
       const winP = plays === 0 ? 0 : Math.round((wins / plays) * 100);
       setTotalWinP(winP);
-      console.log(gameFinished);
     }
   }, [guessesStats]);
 
