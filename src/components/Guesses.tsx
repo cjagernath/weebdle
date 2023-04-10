@@ -133,7 +133,7 @@ export const Guesses: React.FC<GuessesProps> = ({
             </div>
           ) : (
             <div>
-              <h1 className="text-2xl font-bold">The answer was:</h1>
+              <h1 className="text-2xl font-bold">Sorry! The answer was:</h1>
               <h1 className="text-4xl font-bold">{winnerName}</h1>
               <br />
               {maxGuesses.map(() => (

@@ -41,7 +41,7 @@ export const Header: React.FC<HeaderProps> = ({
         </label>
       </div>
       <div className="navbar-center">
-        <h1 className="text-5xl font-bold">Weebdle #{dailyCount}</h1>
+        <h1 className="text-6xl font-bold">Weebdle #{dailyCount}</h1>
       </div>
       <div className="navbar-end">
         <label htmlFor="DMCA" className="btn m-1">
