@@ -35,6 +35,7 @@ export default function Home() {
   return (
     <div data-theme={theme}>
       <div className="flex flex-col h-screen justify-between">
+        <title>Weebdle</title>
         <center>
           <Header
             dailyCount={dailyCount}
