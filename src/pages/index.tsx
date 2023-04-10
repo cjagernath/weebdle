@@ -12,7 +12,6 @@ export default function Home() {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      document.title = "Weebdle";
       const savedTheme = localStorage.getItem("theme");
       setDailyCount(
         Math.ceil((today.getTime() - day1.getTime()) / (1000 * 60 * 60 * 24))
