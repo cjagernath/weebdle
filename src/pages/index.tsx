@@ -7,7 +7,7 @@ export default function Home() {
   const [theme, setTheme] = useState("night");
   const [dailyCount, setDailyCount] = useState(0);
   const [gameFinished, setGameFinished] = useState<boolean>(false);
-  const day1 = new Date(2023, 3, 9); //year, monthIndex, day
+  const day1 = new Date(2023, 3, 8); //day1 is set to April, 8, 2023
   const today = new Date();
 
   useEffect(() => {

@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { NewGuess } from "./NewGuess";
 
 interface GuessesProps {
@@ -24,6 +24,27 @@ export const Guesses: React.FC<GuessesProps> = ({
   savedGuessCorrect,
 }) => {
   const [guessResult, setGuessResult] = useState<boolean>();
+  const [hours, setHours] = useState(0);
+  const [minutes, setMinutes] = useState(0);
+  const [seconds, setSeconds] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const now = new Date();
+      const nextDay = new Date(
+        now.getFullYear(),
+        now.getMonth(),
+        now.getDate() + 1
+      );
+      const timeUntilNextDay = (nextDay.getTime() - now.getTime()) / 1000;
+
+      setHours(Math.floor(timeUntilNextDay / (60 * 60)));
+      setMinutes(Math.floor((timeUntilNextDay / 60) % 60));
+      setSeconds(Math.floor(timeUntilNextDay % 60));
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   const handleGuessSubmit = (guessedCorrect: boolean) => {
     onSubmitGuess(guessedCorrect);
@@ -75,9 +96,20 @@ export const Guesses: React.FC<GuessesProps> = ({
           })}
           <div />
           <br />
-          <button className="btn btn-accent btn-sm" onClick={handleShare}>
-            Share
-          </button>
+
+          <div>
+            <button className="btn btn-accent btn-sm" onClick={handleShare}>
+              Share
+            </button>
+            <br />
+            <br />
+            <h1>New Anime in</h1>
+            <span className="countdown font-mono text-2xl">
+              <span style={{ "--value": hours } as any}></span>:
+              <span style={{ "--value": minutes } as any}></span>:
+              <span style={{ "--value": seconds } as any}></span>
+            </span>
+          </div>
         </div>
       ) : (
         <div>
@@ -109,9 +141,19 @@ export const Guesses: React.FC<GuessesProps> = ({
               ))}
               <div />
               <br />
-              <button className="btn btn-accent btn-sm" onClick={handleShare}>
-                Share
-              </button>
+              <div>
+                <button className="btn btn-accent btn-sm" onClick={handleShare}>
+                  Share
+                </button>
+                <br />
+                <br />
+                <h1>New Anime in</h1>
+                <span className="countdown font-mono text-2xl">
+                  <span style={{ "--value": hours } as any}></span>:
+                  <span style={{ "--value": minutes } as any}></span>:
+                  <span style={{ "--value": seconds } as any}></span>
+                </span>
+              </div>
             </div>
           )}
         </div>

@@ -76,6 +76,7 @@ export const Game: React.FC<GameProps> = ({ onFinished, dailyCount }) => {
     const { winner, winnerName } = GetAnimeByDate(dayOfYear);
     setWinner(winner);
     setWinnerName(winnerName);
+    onFinished(false);
 
     const savedGuessesStats = localStorage.getItem("guessStats");
     if (!savedGuessesStats) {
