@@ -32,21 +32,21 @@ export const Statistics: React.FC<StatsProps> = ({ gameFinished }) => {
   }, [guessesStats]);
 
   return (
-    <div>
-      <div className="stats shadow">
+    <div className="stats stats-vertical bg-accent text-white">
+      <div className="stats bg-accent text-white">
         <div className="stat">
-          <h1>{totalPlays}</h1>
-          <h1>Played</h1>
+          <h1 className="text-3xl font-bold">{totalPlays}</h1>
+          <h1 className="text-1xl font-bold">Played</h1>
         </div>
         <div className="stat">
-          <h1>{totalWinP}%</h1>
-          <h1>Win Percentage</h1>
+          <h1 className="text-3xl font-bold">{totalWinP}%</h1>
+          <h1 className="text-1xl font-bold">Win Percentage</h1>
         </div>
       </div>
       <div className="stat">
         {guessesStats.slice(1, 7).map((value, index) => (
-          <h1 key={index}>
-            {index + 1} : {value}
+          <h1 className="text-1xl font-bold " key={index}>
+            {index + 1}: {value}
           </h1>
         ))}
       </div>
