@@ -43,7 +43,11 @@ export default function Home() {
             gameFinished={gameFinished}
           />
           <br />
-          <Game dailyCount={dailyCount} onFinished={handleGameOver} />
+          <Game
+            dailyCount={dailyCount}
+            onFinished={handleGameOver}
+            today={new Date()}
+          />
         </center>
       </div>
     </div>

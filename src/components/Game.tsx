@@ -6,9 +6,14 @@ import { useState, useEffect } from "react";
 interface GameProps {
   onFinished: (gameOver: boolean) => void;
   dailyCount: number;
+  today: Date;
 }
 
-export const Game: React.FC<GameProps> = ({ onFinished, dailyCount }) => {
+export const Game: React.FC<GameProps> = ({
+  onFinished,
+  dailyCount,
+  today,
+}) => {
   const [guessNum, setGuessNum] = useState(1);
   const [winner, setWinner] = useState(-1);
   const [winnerName, setWinnerName] = useState("");
@@ -17,7 +22,6 @@ export const Game: React.FC<GameProps> = ({ onFinished, dailyCount }) => {
   const [animeNamesList, setAnimeNamesList] = useState<string[]>([]);
   const guessesStats = [0, 0, 0, 0, 0, 0, 0, 0];
   const [savedGuessesArray, setSavedGuessesArray] = useState<number[]>([]);
-  const today = new Date();
   const dayOfYear = Math.ceil(
     (today.getTime() - new Date(today.getFullYear(), 0, 1).getTime()) /
       (1000 * 60 * 60 * 24)
