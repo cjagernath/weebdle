@@ -7,10 +7,16 @@ export default function Home() {
   const [theme, setTheme] = useState("night");
   const [dailyCount, setDailyCount] = useState(0);
   const [gameFinished, setGameFinished] = useState<boolean>(false);
+  const day1 = new Date(2023, 3, 9); //year, monthIndex, day
+  const today = new Date();
 
   useEffect(() => {
     if (typeof window !== "undefined") {
+      document.title = "Weebdle";
       const savedTheme = localStorage.getItem("theme");
+      setDailyCount(
+        Math.ceil((today.getTime() - day1.getTime()) / (1000 * 60 * 60 * 24))
+      );
       if (savedTheme) {
         setTheme(savedTheme);
       }
@@ -21,10 +27,6 @@ export default function Home() {
     const newTheme = theme === "light" ? "night" : "light";
     setTheme(newTheme);
     localStorage.setItem("theme", newTheme);
-  };
-
-  const handleDay = (dailyCount: number) => {
-    setDailyCount(dailyCount);
   };
 
   const handleGameOver = (gameOver: boolean) => {
@@ -41,7 +43,7 @@ export default function Home() {
             gameFinished={gameFinished}
           />
           <br />
-          <Game onReset={handleDay} onFinished={handleGameOver} />
+          <Game dailyCount={dailyCount} onFinished={handleGameOver} />
         </center>
       </div>
     </div>

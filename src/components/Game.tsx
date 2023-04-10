@@ -4,18 +4,17 @@ import { Animes } from "@/Animes";
 import { useState, useEffect } from "react";
 
 interface GameProps {
-  onReset: (dayCounter: number) => void;
   onFinished: (gameOver: boolean) => void;
+  dailyCount: number;
 }
 
-export const Game: React.FC<GameProps> = ({ onReset, onFinished }) => {
+export const Game: React.FC<GameProps> = ({ onFinished, dailyCount }) => {
   const [guessNum, setGuessNum] = useState(1);
   const [winner, setWinner] = useState(-1);
   const [winnerName, setWinnerName] = useState("");
   const [isCorrect, setIsCorrect] = useState<boolean>(false);
   const [guesses, setGuesses] = useState<number[]>([1]);
   const [animeNamesList, setAnimeNamesList] = useState<string[]>([]);
-  const [dailyCount, setDailyCount] = useState(0);
   const guessesStats = [0, 0, 0, 0, 0, 0, 0, 0];
   const [savedGuessesArray, setSavedGuessesArray] = useState<number[]>([]);
   const today = new Date();
@@ -25,16 +24,8 @@ export const Game: React.FC<GameProps> = ({ onReset, onFinished }) => {
   );
   const currentDay = today.toDateString();
   const maxGuesses = [1, 2, 3, 4, 5, 6];
-  let dayCounter = 0;
-  let prevDay = 0;
 
   function GetAnimeByDate(dayOfYear: number) {
-    if (dayOfYear !== prevDay) {
-      dayCounter++;
-      onReset(dayCounter);
-      setDailyCount(dayCounter);
-      prevDay = dayOfYear;
-    }
     const animeNames: string[] = [];
     Animes.map((anime) => animeNames.push(anime.name));
     setAnimeNamesList(animeNames);
