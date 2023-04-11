@@ -25,6 +25,10 @@ export const Picture: React.FC<PictureProps> = ({
   const pics = [img1, img2, img3, img4, img5, img6];
   const [displayImage, setDisplayImage] = useState(pics[0]);
 
+  function GoToLast() {
+    setDisplayImage(pics[5]);
+  }
+
   useEffect(() => {
     if (guessNum < 7) {
       setDisplayImage(pics[guessNum - 1]);
@@ -34,6 +38,12 @@ export const Picture: React.FC<PictureProps> = ({
   const changeDisplay = (index: number) => {
     setDisplayImage(pics[index - 1]);
   };
+
+  useEffect(() => {
+    if (guessedCorrect) {
+      GoToLast();
+    }
+  }, [guessedCorrect]);
 
   return (
     <div>
