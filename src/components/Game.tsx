@@ -89,6 +89,7 @@ export const Game: React.FC<GameProps> = ({
     const savedGuessesStats = localStorage.getItem("guessStats");
     if (!savedGuessesStats) {
       localStorage.setItem("guessStats", JSON.stringify(guessesStats));
+      setSavedGuessesArray([0, 0, 0, 0, 0, 0, 0, 0]);
     } else if (savedGuessesStats) {
       setSavedGuessesArray(JSON.parse(savedGuessesStats));
     }
