@@ -71,7 +71,9 @@ export const Game: React.FC<GameProps> = ({
       localStorage.setItem("lastPlayedDate", currentDay);
       localStorage.setItem("guessNum", guessNum.toLocaleString());
       const updatedGuessesArray = [...savedGuessesArray];
+      console.log(updatedGuessesArray);
       updatedGuessesArray[guessNum] = updatedGuessesArray[guessNum] + 1;
+      console.log(updatedGuessesArray);
       localStorage.setItem("guessStats", JSON.stringify(updatedGuessesArray));
       onFinished(true);
     }
