@@ -16,7 +16,7 @@ export function Rules() {
       <br />
       <p className="text-left">
         To make a guess, type the name of the anime into the input field and
-        click "Submit".
+        click Submit.
       </p>
       <br />
       <p className="text-left">
