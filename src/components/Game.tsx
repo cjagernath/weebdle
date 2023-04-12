@@ -27,7 +27,6 @@ export const Game: React.FC<GameProps> = ({
       (1000 * 60 * 60 * 24) +
       1
   );
-  console.log(dayOfYear);
   const currentDay = today.toDateString();
   const maxGuesses = [1, 2, 3, 4, 5, 6];
 
@@ -50,7 +49,6 @@ export const Game: React.FC<GameProps> = ({
       9, 19, 12, 0, 5, 7, 11, 17, 16, 11, 6, 6, 16, 14, 1, 6, 17, 18,
     ];
     const winner = animesByDay[dayOfYear];
-    console.log(dayOfYear);
     const winnerName = animeNames[winner];
     return { winner, winnerName };
   }
