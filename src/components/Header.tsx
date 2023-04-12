@@ -43,7 +43,7 @@ export const Header: React.FC<HeaderProps> = ({
       <div className="navbar-center">
         <h1 className="text-6xl font-bold">Weebdle #{dailyCount}</h1>
       </div>
-      <div className="navbar-end">
+      <div className="navbar-end flex flex-wrap justify-end">
         <label htmlFor="DMCA" className="btn m-1 bg-accent">
           <svg
             xmlns="http://www.w3.org/2000/svg"
