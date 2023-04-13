@@ -24,7 +24,6 @@ export const Game: React.FC<GameProps> = ({
   const guessesStats = [0, 0, 0, 0, 0, 0, 0, 0];
   const [savedGuessesArray, setSavedGuessesArray] = useState<number[]>([]);
   const dayOfYear = getDayOfYear(today);
-  console.log(dayOfYear);
   const currentDay = today.toDateString();
   const maxGuesses = [1, 2, 3, 4, 5, 6];
   function GetAnimeByDate(dayOfYear: number) {
