@@ -9,11 +9,7 @@ interface GameProps {
   today: Date;
 }
 
-export const Game: React.FC<GameProps> = ({
-  onFinished,
-  dailyCount,
-  today,
-}) => {
+export const Game: React.FC<GameProps> = ({ onFinished, dailyCount }) => {
   const [guessNum, setGuessNum] = useState(1);
   const [winner, setWinner] = useState(-1);
   const [winnerName, setWinnerName] = useState("");
@@ -22,6 +18,9 @@ export const Game: React.FC<GameProps> = ({
   const [animeNamesList, setAnimeNamesList] = useState<string[]>([]);
   const guessesStats = [0, 0, 0, 0, 0, 0, 0, 0];
   const [savedGuessesArray, setSavedGuessesArray] = useState<number[]>([]);
+  const now = new Date();
+  const timezoneOffset = now.getTimezoneOffset() * 60 * 1000; // convert minutes to milliseconds
+  const today = new Date(now.getTime() - timezoneOffset);
   const dayOfYear = Math.ceil(
     (today.getTime() - new Date(today.getFullYear(), 0, 1).getTime()) /
       (1000 * 60 * 60 * 24)
