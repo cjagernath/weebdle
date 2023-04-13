@@ -24,12 +24,12 @@ export const Game: React.FC<GameProps> = ({
   const [savedGuessesArray, setSavedGuessesArray] = useState<number[]>([]);
   const dayOfYear = Math.ceil(
     (today.getTime() - new Date(today.getFullYear(), 0, 1).getTime()) /
-      (1000 * 60 * 60 * 24) +
-      1
+      (1000 * 60 * 60 * 24)
   );
   const currentDay = today.toDateString();
   const maxGuesses = [1, 2, 3, 4, 5, 6];
-
+  console.log(dayOfYear);
+  console.log(today);
   function GetAnimeByDate(dayOfYear: number) {
     const animeNames: string[] = [];
     Animes.map((anime) => animeNames.push(anime.name));
