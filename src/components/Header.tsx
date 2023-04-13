@@ -68,6 +68,15 @@ export const Header: React.FC<HeaderProps> = ({
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
+              <line
+                className="st0"
+                x1="2"
+                y1="2"
+                x2="29"
+                y2="29"
+                stroke="black"
+                strokeWidth="2"
+              />
             </svg>
           </label>
           <label htmlFor="stats" className="btn m-1 bg-accent">

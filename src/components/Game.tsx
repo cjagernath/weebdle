@@ -2,6 +2,7 @@ import { Picture } from "./Picture";
 import { Guesses } from "./Guesses";
 import { Animes } from "@/Animes";
 import { useState, useEffect } from "react";
+import { getDayOfYear } from "date-fns";
 
 interface GameProps {
   onFinished: (gameOver: boolean) => void;
@@ -22,10 +23,8 @@ export const Game: React.FC<GameProps> = ({
   const [animeNamesList, setAnimeNamesList] = useState<string[]>([]);
   const guessesStats = [0, 0, 0, 0, 0, 0, 0, 0];
   const [savedGuessesArray, setSavedGuessesArray] = useState<number[]>([]);
-  const dayOfYear = Math.ceil(
-    (today.getTime() - new Date(today.getFullYear(), 0, 1).getTime()) /
-      (1000 * 60 * 60 * 24)
-  );
+  const dayOfYear = getDayOfYear(today);
+  console.log(dayOfYear);
   const currentDay = today.toDateString();
   const maxGuesses = [1, 2, 3, 4, 5, 6];
   function GetAnimeByDate(dayOfYear: number) {
