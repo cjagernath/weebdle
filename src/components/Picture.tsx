@@ -47,7 +47,7 @@ export const Picture: React.FC<PictureProps> = ({
 
   return (
     <div>
-      <img src={displayImage} width={400} />
+      <img className="rounded-lg" src={displayImage} width={400} />
       {guessedCorrect || (!guessedCorrect && guessNum === 7) ? (
         <div>
           {maxGuesses.map((i, index) => (
