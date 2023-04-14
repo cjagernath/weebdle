@@ -40,7 +40,7 @@ export const Picture: React.FC<PictureProps> = ({
   };
 
   useEffect(() => {
-    if (guessedCorrect) {
+    if (guessedCorrect || guessNum === 7) {
       GoToLast();
     }
   }, [guessedCorrect]);

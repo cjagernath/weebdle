@@ -8,6 +8,8 @@ export const Statistics: React.FC<StatsProps> = ({ gameFinished }) => {
   const [guessesStats, setGuessesStats] = useState<number[]>([]);
   const [totalPlays, setTotalPlays] = useState(0);
   const [totalWinP, setTotalWinP] = useState(0.0);
+  const [denominator, setDenominator] = useState(0);
+  const [barWidths, setBarWidths] = useState([0, 0, 0, 0, 0, 0, 0]);
 
   useEffect(() => {
     const savedGuessesStats = localStorage.getItem("guessStats");
@@ -28,8 +30,24 @@ export const Statistics: React.FC<StatsProps> = ({ gameFinished }) => {
       //win percent
       const winP = plays === 0 ? 0 : Math.round((wins / plays) * 100);
       setTotalWinP(winP);
+      //get denominator (highest guess frequency)
+      const highest = Math.max(...guessesStats.slice(1, 7));
+      setDenominator(highest);
     }
-  }, [guessesStats]);
+  }, [guessesStats, gameFinished]);
+
+  useEffect(() => {
+    //set bar widths to each guess frequency/denominator
+    const barWidthArr = [
+      0,
+      ...guessesStats.slice(1, 7).map((value, index) => {
+        return guessesStats[index + 1] === 0
+          ? 5
+          : Math.round((value / denominator) * 100);
+      }),
+    ];
+    setBarWidths(barWidthArr);
+  }, [denominator, barWidths]);
 
   return (
     <div className="stats stats-vertical ">
@@ -44,11 +62,24 @@ export const Statistics: React.FC<StatsProps> = ({ gameFinished }) => {
         </div>
       </div>
       <div className="stat">
-        {guessesStats.slice(1, 7).map((value, index) => (
-          <h1 className="text-2xl font-bold " key={index}>
-            {index + 1}: {value}
-          </h1>
-        ))}
+        <div>
+          {guessesStats.slice(1, 7).map((value, index) => (
+            <div className="flex" key={index}>
+              <div className="w-5 text-1xl font-bold" key={index}>
+                {index + 1}
+              </div>
+              <div
+                key={index}
+                style={{
+                  width: `${barWidths[index + 1]}%`,
+                  backgroundColor: "lightgray",
+                  height: "20px",
+                }}
+              ></div>
+              <div className="w-5 text-1xl font-bold">{value}</div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
