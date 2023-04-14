@@ -47,7 +47,7 @@ export const Statistics: React.FC<StatsProps> = ({ gameFinished }) => {
       }),
     ];
     setBarWidths(barWidthArr);
-  }, [denominator, barWidths]);
+  }, [denominator, gameFinished]);
 
   return (
     <div className="stats stats-vertical ">
@@ -65,11 +65,8 @@ export const Statistics: React.FC<StatsProps> = ({ gameFinished }) => {
         <div>
           {guessesStats.slice(1, 7).map((value, index) => (
             <div className="flex" key={index}>
-              <div className="w-5 text-1xl font-bold" key={index}>
-                {index + 1}
-              </div>
+              <div className="w-5 text-1xl font-bold">{index + 1}</div>
               <div
-                key={index}
                 style={{
                   width: `${barWidths[index + 1]}%`,
                   backgroundColor: "lightgray",
