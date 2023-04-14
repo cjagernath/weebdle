@@ -20,6 +20,9 @@ export const NewGuess: React.FC<NewGuessProps> = ({
       input.toLocaleLowerCase() === winnerName.toLocaleLowerCase();
     onSubmit(guessedCorrect);
     setDisableGuess(true);
+    if (guessedCorrect === false) {
+      setInput(`🟥 ${input}`);
+    }
   }
 
   return (
