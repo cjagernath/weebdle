@@ -47,7 +47,7 @@ export const Statistics: React.FC<StatsProps> = ({ gameFinished }) => {
       }),
     ];
     setBarWidths(barWidthArr);
-  }, [denominator, barWidths]);
+  }, [denominator, gameFinished]);
 
   return (
     <div className="stats stats-vertical ">
