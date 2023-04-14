@@ -26,38 +26,21 @@ export const NewGuess: React.FC<NewGuessProps> = ({
     <div>
       <input
         type="text"
-        className="input input-bordered input-info w-full max-w-xs"
+        className="input input-bordered input-info w-full max-w-xs m-1.5"
         placeholder="Search for an anime and guess!"
         value={input}
         list="animeList"
         onChange={(e) => setInput(e.target.value)}
         disabled={disableGuess}
-      ></input>
+      />
       <datalist id="animeList">
         {animeNamesList.map((anime) => (
           <option value={anime} key={anime} />
         ))}
       </datalist>
-      {disableGuess ? (
-        <div className="btn btn-square btn-disabled btn-sm">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M6 18L18 6M6 6l12 12"
-            />
-          </svg>
-        </div>
-      ) : (
+      {!disableGuess && (
         <button
-          className="btn btn-accent btn-sm"
+          className="btn btn-accent btn-sm ml-2"
           onClick={handleSubmit}
           disabled={input === ""}
         >
