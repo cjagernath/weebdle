@@ -3,7 +3,7 @@ import { Game } from "@/components/Game";
 //import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+import { getAnalytics, logEvent } from "firebase/analytics";
 
 const firebaseConfig = {
   apiKey: "AIzaSyC36zZQgSvNzmy8mjrde5FbStYFcxzBaSI",

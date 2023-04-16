@@ -3,6 +3,9 @@ import { Guesses } from "./Guesses";
 import { Animes } from "@/Animes";
 import { useState, useEffect } from "react";
 import { getDayOfYear } from "date-fns";
+import { getAnalytics, logEvent } from "firebase/analytics";
+
+const analytics = getAnalytics();
 
 interface GameProps {
   onFinished: (gameOver: boolean) => void;
@@ -71,6 +74,7 @@ export const Game: React.FC<GameProps> = ({
       updatedGuessesArray[7] = updatedGuessesArray[7] + 1;
       localStorage.setItem("guessStats", JSON.stringify(updatedGuessesArray));
       onFinished(true);
+      logEvent(analytics, "user-lost-game");
     } else if (guessedCorrect) {
       localStorage.setItem("lastPlayedDate", currentDay);
       localStorage.setItem("guessNum", guessNum.toLocaleString());
@@ -78,6 +82,7 @@ export const Game: React.FC<GameProps> = ({
       updatedGuessesArray[guessNum] = updatedGuessesArray[guessNum] + 1;
       localStorage.setItem("guessStats", JSON.stringify(updatedGuessesArray));
       onFinished(true);
+      logEvent(analytics, "user-won-game", { "number of guesses": guessNum });
     }
   };
 
