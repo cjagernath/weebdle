@@ -147,7 +147,7 @@ export const Header: React.FC<HeaderProps> = ({
         <input type="checkbox" id="rules" className="modal-toggle" />
         <div className="modal">
           <div className="modal-box">
-            <h1 className="text-3xl font-bold">How to play:</h1>
+            <h1 className="text-3xl font-bold">How To Play</h1>
             <br />
             <Rules />
 

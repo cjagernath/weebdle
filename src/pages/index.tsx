@@ -3,7 +3,7 @@ import { Game } from "@/components/Game";
 //import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { initializeApp } from "firebase/app";
-import { getAnalytics, logEvent } from "firebase/analytics";
+import { getAnalytics, logEvent, isSupported } from "firebase/analytics";
 
 const firebaseConfig = {
   apiKey: "AIzaSyC36zZQgSvNzmy8mjrde5FbStYFcxzBaSI",
@@ -15,7 +15,6 @@ const firebaseConfig = {
   measurementId: "G-BJZK5MVB27",
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 
@@ -46,6 +45,9 @@ export default function Home() {
 
   const handleGameOver = (gameOver: boolean) => {
     setGameFinished(gameOver);
+    if (gameOver) {
+      logEvent(analytics, "user-finished-playing");
+    }
   };
 
   return (
