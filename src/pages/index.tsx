@@ -2,6 +2,22 @@ import { useEffect, useState } from "react";
 import { Game } from "@/components/Game";
 //import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyC36zZQgSvNzmy8mjrde5FbStYFcxzBaSI",
+  authDomain: "weebdleapp-1f90d.firebaseapp.com",
+  projectId: "weebdleapp-1f90d",
+  storageBucket: "weebdleapp-1f90d.appspot.com",
+  messagingSenderId: "46038143996",
+  appId: "1:46038143996:web:31b5f8ea109f133e579879",
+  measurementId: "G-BJZK5MVB27",
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
 
 export default function Home() {
   const [theme, setTheme] = useState("night");
