@@ -63,9 +63,16 @@ export const Guesses: React.FC<GuessesProps> = ({
       }
     }
 
-    navigator.clipboard.writeText(
-      `Weebdle #${dailyCount}\n${result}\n\nhttp://weebdle.com/`
-    );
+    const text = `Weebdle #${dailyCount}\n${result}\n\nhttp://weebdle.com/`;
+    const element = document.createElement("textarea");
+    element.value = text;
+    element.setAttribute("readonly", "");
+    element.style.position = "absolute";
+    element.style.left = "-9999px";
+    document.body.appendChild(element);
+    element.select();
+    document.execCommand("copy");
+    document.body.removeChild(element);
     alert("Copied to clipboard!");
   };
 
