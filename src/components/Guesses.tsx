@@ -63,17 +63,33 @@ export const Guesses: React.FC<GuessesProps> = ({
       }
     }
 
-    const text = `Weebdle #${dailyCount}\n${result}\n\nhttp://weebdle.com/`;
-    const element = document.createElement("textarea");
-    element.value = text;
-    element.setAttribute("readonly", "");
-    element.style.position = "absolute";
-    element.style.left = "-9999px";
-    document.body.appendChild(element);
-    element.select();
-    document.execCommand("copy");
-    document.body.removeChild(element);
-    alert("Copied to clipboard!");
+    if (navigator.clipboard && navigator.clipboard.write) {
+      const text = `Weebdle #${dailyCount}\n${result}\n\nhttp://weebdle.com/`;
+      const data = new Blob([text], { type: "text/plain" });
+      const item = new ClipboardItem({ [data.type]: data });
+
+      navigator.clipboard.write([item]).then(
+        function () {
+          alert("Copied to clipboard!");
+        },
+        function (error) {
+          console.error("Unable to copy to clipboard: ", error);
+        }
+      );
+    } else {
+      // Fallback to the previous method
+      const text = `Weebdle #${dailyCount}\n${result}\n\nhttp://weebdle.com/`;
+      const element = document.createElement("textarea");
+      element.value = text;
+      element.setAttribute("readonly", "");
+      element.style.position = "absolute";
+      element.style.left = "-9999px";
+      document.body.appendChild(element);
+      element.select();
+      document.execCommand("copy");
+      document.body.removeChild(element);
+      alert("Copied to clipboard!");
+    }
   };
 
   return (
