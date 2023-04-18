@@ -101,7 +101,7 @@ export const Animes = [
   },
   {
     name: "Dr. Stone",
-    img1: "https://ancdn.fancaps.net/11802982.jpg",
+    img1: "https://ancdn.fancaps.net/11802454.jpg",
     img2: "https://ancdn.fancaps.net/12422146.jpg",
     img3: "https://ancdn.fancaps.net/11795824.jpg",
     img4: "https://ancdn.fancaps.net/11786081.jpg",
