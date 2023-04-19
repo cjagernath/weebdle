@@ -78,7 +78,7 @@ export const Guesses: React.FC<GuessesProps> = ({
       );
     } else {
       // Fallback to the previous method
-      const text = `Weebdle #${dailyCount}\n${result}\n\nhttp://weebdle.com/`;
+      const text = `Weebdle #${dailyCount}\n${result}\n\nhttps://weebdle.com/`;
       const element = document.createElement("textarea");
       element.value = text;
       element.setAttribute("readonly", "");
