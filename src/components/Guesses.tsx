@@ -64,7 +64,7 @@ export const Guesses: React.FC<GuessesProps> = ({
     }
 
     if (navigator.clipboard && navigator.clipboard.write) {
-      const text = `Weebdle #${dailyCount}\n${result}\n\nhttp://weebdle.com/`;
+      const text = `Weebdle #${dailyCount}\n${result}\n\nhttps://weebdle.com/`;
       const data = new Blob([text], { type: "text/plain" });
       const item = new ClipboardItem({ [data.type]: data });
 
