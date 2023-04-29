@@ -1,10 +1,10 @@
 export const Animes = [
   {
     name: "Dragon Ball Z",
-    img1: "https://ancdn.fancaps.net/3398880.jpg",
-    img2: "https://ancdn.fancaps.net/384147.jpg",
+    img1: "https://ancdn.fancaps.net/3654774.jpg",
+    img2: "https://ancdn.fancaps.net/3710658.jpg",
     img3: "https://ancdn.fancaps.net/3434611.jpg",
-    img4: "https://ancdn.fancaps.net/3640538.jpg",
+    img4: "https://ancdn.fancaps.net/3398880.jpg",
     img5: "https://ancdn.fancaps.net/3654244.jpg",
     img6: "https://ancdn.fancaps.net/3743463.jpg",
   },
