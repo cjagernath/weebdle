@@ -314,7 +314,7 @@ export const Animes = [
   {
     name: "Naruto Shippuden",
     img1: "https://static.zerochan.net/Nohara.Rin.full.62500.jpg",
-    img2: "https://static.zerochan.net/Mui.%28NARUTO%29.full.3911020.png",
+    img2: "https://static.zerochan.net/NARUTO.full.361140.jpg",
     img3: "https://static.zerochan.net/Jiraiya.full.62538.jpg",
     img4: "https://static.zerochan.net/NARUTO.full.96300.jpg",
     img5: "https://static.zerochan.net/Uchiha.Itachi.full.163701.jpg",
